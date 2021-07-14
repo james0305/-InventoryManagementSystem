@@ -1,0 +1,78 @@
+﻿@model InventoryManagementSystem.Models.EF.User
+
+@{
+    ViewData["Title"] = "userLogin";
+}
+
+<style>
+    .login-block {
+        float: left;
+        width: 100%;
+        padding: 50px 0;
+    }
+
+    .login-sec {
+        padding: 50px 30px;
+        position: relative;
+    }
+
+        .login-sec h2 {
+            margin-bottom: 30px;
+            font-weight: 800;
+            font-size: 30px;
+            color: #0069c0;
+        }
+
+            .login-sec h2:after {
+                content: " ";
+                width: 100px;
+                height: 5px;
+                background: #6ec6ff;
+                display: block;
+                margin-top: 20px;
+                border-radius: 3px;
+                margin-left: auto;
+                margin-right: auto
+            }
+
+    .btn-login {
+        background: #0069c0;
+        color: #fff;
+        font-weight: 600;
+    }
+</style>
+
+@using (Html.BeginForm())
+{
+    <section class="login-block">
+        <div class="container" style="background-color:#D3D3D3;border-radius:10px;width:80%">
+            <div class="row ">
+                <div class="col login-sec">
+                    <h2 class="text-center">登入頁面</h2>
+                    <form class="login-form">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1" class="text-uppercase">帳號</label>
+                            @Html.TextBoxFor(u => u.Username, new { required = "required", @Class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1" class="text-uppercase">密碼</label>
+                            @Html.PasswordFor(u => u.Password, new { required = "required", @Class = "form-control" })
+                        </div>
+
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input">
+                                <small>記住帳號</small>
+                            </label>
+                            <button type="submit" class="btn btn-login float-right">登入</button>
+                            @if(ViewBag.Error != null)
+                {
+                                @ViewBag.Error
+                }
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+}
